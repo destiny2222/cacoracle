@@ -301,7 +301,7 @@ export default function Home() {
           <div className="block md:hidden">
             <button
               onClick={() => setIsMobileMenuOpen(true)}
-              className="text-white hover:text-[#FDCE52] active:scale-90 transition-all duration-200 p-2 rounded-full hover:bg-white/10 focus:outline-none"
+              className="text-[#FDCE52] hover:text-white active:scale-90 transition-all duration-200 p-2.5 rounded-xl bg-[#0C186C] hover:bg-[#060c3b] focus:outline-none border border-[#FDCE52]/20 shadow-md"
               aria-label="Open menu"
             >
               <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -310,94 +310,94 @@ export default function Home() {
             </button>
           </div>
         </div>
+      </header>
 
-        {/* Mobile Sidebar Menu Drawer (Animated slide-in from right) */}
-        <div className={`fixed inset-0 z-50 flex justify-end transition-all duration-300 ${isMobileMenuOpen ? "pointer-events-auto" : "pointer-events-none invisible"}`}>
-          {/* Backdrop */}
-          <div
-            className={`fixed inset-0 backdrop-blur-xs transition-opacity duration-300 ${isMobileMenuOpen ? "opacity-100" : "opacity-0"}`}
-            style={{ backgroundColor: "rgba(17, 17, 17, 0.7)" }}
-            onClick={() => setIsMobileMenuOpen(false)}
-          />
-          {/* Drawer Panel */}
-          <div
-            className={`relative flex flex-col w-80 max-w-[85vw] text-white h-full p-6 shadow-2xl z-10 transition-transform duration-300 ease-in-out transform ${
-              isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
-            }`}
-            style={{ backgroundColor: "#0c186c" }}
-          >
-            <div className="flex items-center justify-between mb-8 pb-4 border-b border-white/10">
-              <img
-                src="/logo.png"
-                alt="The CAC Oracle Global Consult Logo"
-                className="h-8 w-auto object-contain"
-              />
-              <button
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="text-[#FDCE52] hover:text-white hover:bg-white/10 p-2 rounded-full transition-all duration-200 focus:outline-none"
-                aria-label="Close menu"
-              >
-                <svg className="w-6 h-6 transform hover:rotate-90 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
-            
-            <nav className="flex flex-col gap-2">
-              <a
-                href="#home"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="flex items-center gap-4 text-white font-semibold text-lg py-3 px-4 rounded-xl hover:bg-white/10 transition-all duration-200"
-              >
-                HOME
-              </a>
-              <a
-                href="#about"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="flex items-center gap-4 text-white font-semibold text-lg py-3 px-4 rounded-xl hover:bg-white/10 transition-all duration-200"
-              >
-                ABOUT
-              </a>
-              <a
-                href="#services"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="flex items-center gap-4 text-white font-semibold text-lg py-3 px-4 rounded-xl hover:bg-white/10 transition-all duration-200"
-              >
-                SERVICES
-              </a>
-              <a
-                href="#resources"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="flex items-center gap-4 text-white font-semibold text-lg py-3 px-4 rounded-xl hover:bg-white/10 transition-all duration-200"
-              >
-                RESOURCES
-              </a>
-              <a
-                href="#contact"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="flex items-center gap-4 text-white font-semibold text-lg py-3 px-4 rounded-xl hover:bg-white/10 transition-all duration-200"
-              >
-                CONTACT
-              </a>
-            </nav>
- 
-            <div className="mt-auto border-t border-white/10 pt-6">
-              <a
-                href="https://wa.me/2348130156361"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2.5 w-full py-3.5 px-4 bg-[#25d366] hover:bg-[#20ba5a] text-white font-bold text-base rounded-xl shadow-md transition-all duration-300 hover:scale-[1.02] active:scale-98"
-              >
-                <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.73-1.45L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.407 9.864-9.825.002-2.623-1.023-5.086-2.884-6.951-1.864-1.865-4.343-2.891-6.963-2.891-5.439 0-9.865 4.408-9.869 9.827-.001 1.73.454 3.418 1.316 4.908l-.961 3.513 3.602-.937zm11.025-4.996c-.302-.151-1.791-.884-2.073-.986-.282-.103-.488-.152-.693.151-.205.304-.795.986-.974 1.189-.179.203-.359.228-.661.077-1.127-.565-2.023-1.024-2.825-2.404-.204-.352.204-.326.58-.988.11-.19.055-.357-.027-.508-.083-.151-.693-1.671-.95-2.285-.25-.6-.525-.52-.72-.53-.186-.01-.399-.01-.612-.01-.213 0-.56.08-.853.401-.293.32-1.12 1.094-1.12 2.67 0 1.574 1.147 3.097 1.307 3.3 1.6 2.1 3.5 3.3 5.4 4.1.9.4 1.7.6 2.3.5.7-.1 1.5-.6 1.7-.9.2-.3.2-.6.1-.9-.1-.3-.3-.4-.6-.6z"/>
-                </svg>
-                <span>Talk to the CAC Oracle</span>
-              </a>
-              <p className="text-[10px] text-white/50 text-center mt-3 font-medium">Mon - Sat: 8:00 AM - 6:00 PM</p>
-            </div>
+      {/* Mobile Sidebar Menu Drawer (Animated slide-in from right) */}
+      <div className={`fixed inset-0 z-50 flex justify-end transition-all duration-300 ${isMobileMenuOpen ? "pointer-events-auto" : "pointer-events-none invisible"}`}>
+        {/* Backdrop */}
+        <div
+          className={`fixed inset-0 backdrop-blur-xs transition-opacity duration-300 ${isMobileMenuOpen ? "opacity-100" : "opacity-0"}`}
+          style={{ backgroundColor: "rgba(17, 17, 17, 0.7)" }}
+          onClick={() => setIsMobileMenuOpen(false)}
+        />
+        {/* Drawer Panel */}
+        <div
+          className={`relative flex flex-col w-80 max-w-[85vw] text-white h-full p-6 shadow-2xl z-10 transition-transform duration-300 ease-in-out transform ${
+            isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
+          }`}
+          style={{ backgroundColor: "#0c186c" }}
+        >
+          <div className="flex items-center justify-between mb-8 pb-4 border-b border-white/10">
+            <img
+              src="/logo.png"
+              alt="The CAC Oracle Global Consult Logo"
+              className="h-8 w-auto object-contain"
+            />
+            <button
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="text-[#FDCE52] hover:text-white hover:bg-white/10 p-2 rounded-full transition-all duration-200 focus:outline-none"
+              aria-label="Close menu"
+            >
+              <svg className="w-6 h-6 transform hover:rotate-90 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+          
+          <nav className="flex flex-col gap-2">
+            <a
+              href="#home"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="flex items-center gap-4 text-white font-semibold text-lg py-3 px-4 rounded-xl hover:bg-white/10 transition-all duration-200"
+            >
+              HOME
+            </a>
+            <a
+              href="#about"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="flex items-center gap-4 text-white font-semibold text-lg py-3 px-4 rounded-xl hover:bg-white/10 transition-all duration-200"
+            >
+              ABOUT
+            </a>
+            <a
+              href="#services"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="flex items-center gap-4 text-white font-semibold text-lg py-3 px-4 rounded-xl hover:bg-white/10 transition-all duration-200"
+            >
+              SERVICES
+            </a>
+            <a
+              href="#resources"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="flex items-center gap-4 text-white font-semibold text-lg py-3 px-4 rounded-xl hover:bg-white/10 transition-all duration-200"
+            >
+              RESOURCES
+            </a>
+            <a
+              href="#contact"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="flex items-center gap-4 text-white font-semibold text-lg py-3 px-4 rounded-xl hover:bg-white/10 transition-all duration-200"
+            >
+              CONTACT
+            </a>
+          </nav>
+
+          <div className="mt-auto border-t border-white/10 pt-6">
+            <a
+              href="https://wa.me/2348130156361"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2.5 w-full py-3.5 px-4 bg-[#25d366] hover:bg-[#20ba5a] text-white font-bold text-base rounded-xl shadow-md transition-all duration-300 hover:scale-[1.02] active:scale-98"
+            >
+              <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.73-1.45L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.407 9.864-9.825.002-2.623-1.023-5.086-2.884-6.951-1.864-1.865-4.343-2.891-6.963-2.891-5.439 0-9.865 4.408-9.869 9.827-.001 1.73.454 3.418 1.316 4.908l-.961 3.513 3.602-.937zm11.025-4.996c-.302-.151-1.791-.884-2.073-.986-.282-.103-.488-.152-.693.151-.205.304-.795.986-.974 1.189-.179.203-.359.228-.661.077-1.127-.565-2.023-1.024-2.825-2.404-.204-.352.204-.326.58-.988.11-.19.055-.357-.027-.508-.083-.151-.693-1.671-.95-2.285-.25-.6-.525-.52-.72-.53-.186-.01-.399-.01-.612-.01-.213 0-.56.08-.853.401-.293.32-1.12 1.094-1.12 2.67 0 1.574 1.147 3.097 1.307 3.3 1.6 2.1 3.5 3.3 5.4 4.1.9.4 1.7.6 2.3.5.7-.1 1.5-.6 1.7-.9.2-.3.2-.6.1-.9-.1-.3-.3-.4-.6-.6z"/>
+              </svg>
+              <span>Talk to the CAC Oracle</span>
+            </a>
+            <p className="text-[10px] text-white/50 text-center mt-3 font-medium">Mon - Sat: 8:00 AM - 6:00 PM</p>
           </div>
         </div>
-      </header>
+      </div>
 
       {/* --- HERO SECTION --- */}
       <section
