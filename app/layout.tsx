@@ -21,8 +21,56 @@ const luckiestGuy = Luckiest_Guy({
 });
 
 export const metadata: Metadata = {
-  title: "Your Brand Registration Agency | The CAC Oracle Global Consult",
-  description: "We simplify everything and anything brand registration by answering all your questions and making the registration process smoother, easier and convenient.",
+  metadataBase: new URL("https://thecacoracle.com"),
+  title: "The CAC Oracle Global Consult | Brand Registration Agency",
+  description: "We simplify business registration in Nigeria. Get professional support for CAC registration, Tax Promax, annual returns, SCUML, NIN modification, and passports.",
+  keywords: [
+    "CAC Registration",
+    "Business Registration Nigeria",
+    "SCUML Processing",
+    "Annual Returns",
+    "NIN Modification",
+    "International Passport Nigeria",
+    "The CAC Oracle",
+    "Ejiaka Pascal Nnchdonna",
+    "Company Registration LLC"
+  ],
+  openGraph: {
+    title: "The CAC Oracle Global Consult | Brand Registration Agency",
+    description: "We simplify business registration in Nigeria. Get professional support for CAC registration, Tax Promax, annual returns, SCUML, NIN modification, and passports.",
+    url: "https://thecacoracle.com",
+    siteName: "The CAC Oracle Global Consult",
+    images: [
+      {
+        url: "/register.jpg",
+        width: 1200,
+        height: 630,
+        alt: "The CAC Oracle Global Consult - Brand Registration Agency"
+      }
+    ],
+    locale: "en_NG",
+    type: "website"
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "The CAC Oracle Global Consult | Brand Registration Agency",
+    description: "We simplify business registration in Nigeria. Get professional support for CAC registration, Tax Promax, annual returns, SCUML, NIN modification, and passports.",
+    images: ["/register.jpg"],
+    creator: "@thecacoracle"
+  },
+  robots: {
+    index: true,
+    follow: true,
+    nocache: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      noimageindex: false,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1
+    }
+  }
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
