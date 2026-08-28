@@ -166,21 +166,45 @@ export default function Home() {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12a3 3 0 100-6 3 3 0 000 6zm6-3h2m0 0h2m-2 0v2m0-2V7m-6 13h10a2 2 0 002-2v-3a2 2 0 00-2-2H9a2 2 0 00-2 2v3a2 2 0 002 2z" />
         </svg>
       )
+    },
+    {
+      title: "Document Retrieval",
+      desc: "Retrieve official CAC documents like certificates, status reports, and certified true copies seamlessly.",
+      icon: (
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+        </svg>
+      )
+    },
+    {
+      title: "Newspaper Publication",
+      desc: "Fulfill statutory requirements with prompt and legal newspaper publications for your corporate activities.",
+      icon: (
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+        </svg>
+      )
     }
   ];
 
   const faqData = [
     {
-      question: "How long does it take to register a business name or company with CAC?",
+      question: "How long does it take to register with corporate affairs commission?",
       answer: (
         <div>
           <p className="mb-2">Typically:</p>
           <ul className="list-disc pl-5 space-y-1">
             <li>
-              <strong>Business Name:</strong> 3–7 working days
+              <strong>Business Name:</strong> 24-48 hours
             </li>
             <li>
-              <strong>Limited Liability Company:</strong> 1–2 weeks
+              <strong>Limited Liability Company:</strong> 5-10 working days
+            </li>
+            <li>
+              <strong>NGO, Church, Mosque, Club, Association:</strong> 30-60 days
+            </li>
+            <li>
+              <strong>Limited liability company by guarantee:</strong> 3-6 months
             </li>
           </ul>
           <p className="mt-2 text-sm text-gray-500 italic">
@@ -261,7 +285,18 @@ export default function Home() {
 
   // Red Alert Popup State
   const [showPopup, setShowPopup] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(24 * 60 * 60);
+  const [timeLeft, setTimeLeft] = useState(3600); // 1 hour
+
+  // Mentorship Image State
+  const mentorshipImages = ["/paidclass.png", "/mentorship.jpeg"];
+  const [mentorshipImageIndex, setMentorshipImageIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setMentorshipImageIndex((prev) => (prev + 1) % mentorshipImages.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -288,28 +323,29 @@ export default function Home() {
   return (
     <div id="home" className="flex flex-col min-h-screen bg-white text-[#111111] font-sans selection:bg-[#FDCE52]/30">
       
-      {/* RED ALERT POPUP */}
+      {/* RED ALERT FLOATING WIDGET */}
       {showPopup && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
-          <div className="relative bg-[#0C186C] text-white w-full max-w-md rounded-3xl overflow-hidden shadow-2xl border-4 border-red-600 animate-[pulse_2s_ease-in-out_infinite] transition-all duration-300">
+        <div className="fixed bottom-4 left-4 right-4 md:left-auto md:right-6 md:w-[360px] z-[100]">
+          <div className="relative bg-[#0C186C] text-white w-full rounded-2xl overflow-hidden shadow-2xl border-2 border-red-600 animate-[pulse_3s_ease-in-out_infinite] transition-all duration-300">
             <button 
               onClick={() => setShowPopup(false)}
-              className="absolute top-4 right-4 text-white/70 hover:text-white transition-colors"
+              className="absolute top-2 right-2 text-white/70 hover:text-white transition-colors bg-black/20 rounded-full p-1 z-10"
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
-            <div className="p-8 text-center flex flex-col gap-4 mt-2">
-              <div className="text-red-500 mx-auto bg-red-500/10 p-3 rounded-full w-fit">
-                <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
-              </div>
-              <h3 className="text-2xl font-black text-red-500 uppercase tracking-tight">🚨 Red Alert! 🚨</h3>
-              <p className="text-lg font-bold text-[#FDCE52]">
-                Why settle for a free class when you can MASTER everything?
+            <div className="p-5 text-center flex flex-col gap-3 relative">
+              <h3 className="text-base font-black text-red-500 uppercase tracking-tight leading-tight">
+                🚨 Promotional Offer 🚨
+              </h3>
+              <p className="text-[12px] font-bold text-[#FDCE52] uppercase leading-snug">
+                For Stay-at-home-mums, Students, Turn CAC Registration as a side hustle
               </p>
-              <p className="text-white/90 text-sm">
-                Get <span className="font-extrabold text-white text-lg">50% OFF</span> the Complete Mentorship Class <span className="underline decoration-red-500 decoration-2">TODAY ONLY</span>! 
+              <p className="text-white/90 text-[13px] font-medium leading-snug">
+                <span className="font-extrabold text-white text-[15px]">GET 50% DISCOUNT</span> on all my mentorship courses today. 
+                <br />
+                <span className="text-red-400 font-bold">OFFER VALID FOR ONLY TODAY</span>
               </p>
-              <div className="bg-red-600 text-white font-mono font-bold text-2xl py-3 rounded-xl mt-2 border border-red-400/50 shadow-inner">
+              <div className="bg-red-600 text-white font-mono font-bold text-xl py-2 rounded-lg mt-1 border border-red-400/50 shadow-inner">
                 {formatTime(timeLeft)}
               </div>
               <a
@@ -317,9 +353,9 @@ export default function Home() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setShowPopup(false)}
-                className="mt-4 w-full py-4 text-center rounded-xl bg-[#FDCE52] hover:bg-white text-[#0C186C] font-extrabold text-lg transition-all duration-300 shadow-lg transform hover:scale-105"
+                className="mt-2 w-full py-2.5 text-center rounded-lg bg-[#FDCE52] hover:bg-white text-[#0C186C] font-extrabold text-sm transition-all duration-300 shadow-md transform hover:scale-105 uppercase"
               >
-                CLAIM 50% DISCOUNT NOW
+                Claim Discount Now
               </a>
             </div>
           </div>
@@ -352,13 +388,13 @@ export default function Home() {
           {/* Desktop CTA Button */}
           <div className="hidden md:block">
             <a
-              href="https://wa.me/2348130156361"
+              href="https://wa.link/p7s0qx"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex flex-col items-center justify-center bg-[#FDCE52] hover:bg-white text-[#0C186C] px-6 py-1.5 rounded-lg shadow-sm transition-all duration-300 hover:scale-105"
+              className="inline-flex flex-col items-center justify-center bg-[#FDCE52] hover:bg-white text-[#0C186C] px-6 py-1.5 rounded-lg shadow-sm transition-all duration-300 hover:scale-105 text-center"
             >
-              <span className="font-bold text-sm">TALK TO THE CAC ORACLE</span>
-              <span className="text-[10px] font-semibold opacity-80 -mt-0.5">Stuck in registration?</span>
+              <span className="font-bold text-xs uppercase">Speak to the CAC ORACLE now to get expert help</span>
+              <span className="text-[9px] font-semibold opacity-80 mt-0.5">Do you have challenge with any CAC Registration?</span>
             </a>
           </div>
 
@@ -449,17 +485,20 @@ export default function Home() {
 
           <div className="mt-auto border-t border-white/10 pt-6">
             <a
-              href="https://wa.me/2348130156361"
+              href="https://wa.link/p7s0qx"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2.5 w-full py-3.5 px-4 bg-[#25d366] hover:bg-[#20ba5a] text-white font-bold text-base rounded-xl shadow-md transition-all duration-300 hover:scale-[1.02] active:scale-98"
+              className="flex flex-col items-center justify-center gap-1 w-full py-3.5 px-4 bg-[#25d366] hover:bg-[#20ba5a] text-white rounded-xl shadow-md transition-all duration-300 hover:scale-[1.02] active:scale-98 text-center"
             >
-              <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.73-1.45L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.407 9.864-9.825.002-2.623-1.023-5.086-2.884-6.951-1.864-1.865-4.343-2.891-6.963-2.891-5.439 0-9.865 4.408-9.869 9.827-.001 1.73.454 3.418 1.316 4.908l-.961 3.513 3.602-.937zm11.025-4.996c-.302-.151-1.791-.884-2.073-.986-.282-.103-.488-.152-.693.151-.205.304-.795.986-.974 1.189-.179.203-.359.228-.661.077-1.127-.565-2.023-1.024-2.825-2.404-.204-.352.204-.326.58-.988.11-.19.055-.357-.027-.508-.083-.151-.693-1.671-.95-2.285-.25-.6-.525-.52-.72-.53-.186-.01-.399-.01-.612-.01-.213 0-.56.08-.853.401-.293.32-1.12 1.094-1.12 2.67 0 1.574 1.147 3.097 1.307 3.3 1.6 2.1 3.5 3.3 5.4 4.1.9.4 1.7.6 2.3.5.7-.1 1.5-.6 1.7-.9.2-.3.2-.6.1-.9-.1-.3-.3-.4-.6-.6z"/>
-              </svg>
-              <span>Talk to the CAC Oracle</span>
+              <div className="flex items-center justify-center gap-1">
+                <svg className="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.73-1.45L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.407 9.864-9.825.002-2.623-1.023-5.086-2.884-6.951-1.864-1.865-4.343-2.891-6.963-2.891-5.439 0-9.865 4.408-9.869 9.827-.001 1.73.454 3.418 1.316 4.908l-.961 3.513 3.602-.937zm11.025-4.996c-.302-.151-1.791-.884-2.073-.986-.282-.103-.488-.152-.693.151-.205.304-.795.986-.974 1.189-.179.203-.359.228-.661.077-1.127-.565-2.023-1.024-2.825-2.404-.204-.352.204-.326.58-.988.11-.19.055-.357-.027-.508-.083-.151-.693-1.671-.95-2.285-.25-.6-.525-.52-.72-.53-.186-.01-.399-.01-.612-.01-.213 0-.56.08-.853.401-.293.32-1.12 1.094-1.12 2.67 0 1.574 1.147 3.097 1.307 3.3 1.6 2.1 3.5 3.3 5.4 4.1.9.4 1.7.6 2.3.5.7-.1 1.5-.6 1.7-.9.2-.3.2-.6.1-.9-.1-.3-.3-.4-.6-.6z"/>
+                </svg>
+                <span className="font-bold text-xs uppercase leading-tight">Speak to the CAC ORACLE now to get expert help</span>
+              </div>
+              <span className="text-[10px] opacity-90 leading-tight">Do you have challenge with any CAC Registration?</span>
             </a>
-            <p className="text-[10px] text-white/50 text-center mt-3 font-medium">Mon - Sat: 8:00 AM - 6:00 PM</p>
+            <p className="text-[10px] text-white/50 text-center mt-3 font-medium">Mon - Sat: 9:00 AM - 9:00 PM</p>
           </div>
         </div>
       </div>
@@ -487,13 +526,13 @@ export default function Home() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mt-2">
               <a
-                href="https://wa.me/2348130156361"
+                href="https://wa.link/p7s0qx"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex flex-col items-center justify-center bg-[#FDCE52] hover:bg-white text-[#0C186C] px-8 py-3 rounded-lg shadow-lg transition-all duration-300 hover:scale-105 text-center"
               >
-                <span className="font-bold text-lg">TALK TO THE CAC ORACLE</span>
-                <span className="text-xs font-semibold opacity-80 mt-0.5">Stuck in registration? Get expert help</span>
+                <span className="font-bold text-sm md:text-base uppercase">Speak to the CAC ORACLE now to get expert help</span>
+                <span className="text-xs font-semibold opacity-80 mt-0.5">Do you have challenge with any CAC Registration?</span>
               </a>
               <a
                 href="#services"
@@ -618,16 +657,21 @@ export default function Home() {
                     className="relative w-full overflow-hidden aspect-square"
                     style={{ backgroundColor: "#0c186c" }}
                   >
-                    <img
-                      src="/paidclass.png"
-                      alt="Premium Mentorship Program"
-                      className="w-full h-full object-cover"
-                    />
+                    {mentorshipImages.map((src, index) => (
+                      <img
+                        key={src}
+                        src={src}
+                        alt="Premium Mentorship Program"
+                        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+                          index === mentorshipImageIndex ? "opacity-100" : "opacity-0"
+                        }`}
+                      />
+                    ))}
                   </div>
                   <div className="p-8">
                     <h3 className="text-2xl font-bold text-[#0C186C] mb-3 uppercase">Premium CAC Mentorship</h3>
                     <p className="text-[#111111]/80 text-sm leading-relaxed font-sans">
-                      Ready to scale your registration business? Join my exclusive paid waitlist for step-by-step mentorship, industry secrets, NIN processing training, and priority cohort access.
+                      Are you a stay-at-home mum, student, aspiring entrepreneur, or simply looking for a practical way to earn extra income? Learn a skill you can start with just your phone.
                     </p>
                   </div>
                 </div>
@@ -724,12 +768,24 @@ export default function Home() {
 
             <FadeInSection className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
               {CAC_SERVICES.map((srv, idx) => (
-                <div key={idx} className="bg-white rounded-xl p-6 md:p-8 shadow-xs border border-[#0C186C]/5 hover:border-[#0C186C]/15 hover:shadow-md transition-all duration-300 flex flex-col gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-[#0C186C] text-[#FDCE52] flex items-center justify-center shadow-xs">
-                    {srv.icon}
+                <div key={idx} className="bg-white rounded-xl p-6 md:p-8 shadow-xs border border-[#0C186C]/5 hover:border-[#0C186C]/15 hover:shadow-md transition-all duration-300 flex flex-col h-full">
+                  <div className="flex flex-col gap-4 flex-grow">
+                    <div className="w-12 h-12 rounded-xl bg-[#0C186C] text-[#FDCE52] flex items-center justify-center shadow-xs">
+                      {srv.icon}
+                    </div>
+                    <h4 className="text-lg font-bold text-[#0C186C]">{srv.title}</h4>
+                    <p className="text-[#111111]/70 text-sm leading-relaxed font-sans">{srv.desc}</p>
                   </div>
-                  <h4 className="text-lg font-bold text-[#0C186C]">{srv.title}</h4>
-                  <p className="text-[#111111]/70 text-sm leading-relaxed font-sans">{srv.desc}</p>
+                  <div className="mt-6 pt-5 border-t border-[#0C186C]/10">
+                    <a
+                      href="https://wa.me/c/2348130156361"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full py-2.5 px-4 text-center rounded-lg bg-[#0C186C]/5 text-[#0C186C] font-bold hover:bg-[#0C186C] hover:text-[#FDCE52] transition-all duration-300 inline-block text-sm shadow-sm"
+                    >
+                      View Requirements
+                    </a>
+                  </div>
                 </div>
               ))}
             </FadeInSection>
@@ -744,12 +800,24 @@ export default function Home() {
 
             <FadeInSection className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
               {OTHER_SERVICES.map((srv, idx) => (
-                <div key={idx} className="bg-white rounded-xl p-6 md:p-8 shadow-xs border border-[#0C186C]/5 hover:border-[#0C186C]/15 hover:shadow-md transition-all duration-300 flex flex-col gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-[#0C186C] text-[#FDCE52] flex items-center justify-center shadow-xs">
-                    {srv.icon}
+                <div key={idx} className="bg-white rounded-xl p-6 md:p-8 shadow-xs border border-[#0C186C]/5 hover:border-[#0C186C]/15 hover:shadow-md transition-all duration-300 flex flex-col h-full">
+                  <div className="flex flex-col gap-4 flex-grow">
+                    <div className="w-12 h-12 rounded-xl bg-[#0C186C] text-[#FDCE52] flex items-center justify-center shadow-xs">
+                      {srv.icon}
+                    </div>
+                    <h4 className="text-lg font-bold text-[#0C186C]">{srv.title}</h4>
+                    <p className="text-[#111111]/70 text-sm leading-relaxed font-sans">{srv.desc}</p>
                   </div>
-                  <h4 className="text-lg font-bold text-[#0C186C]">{srv.title}</h4>
-                  <p className="text-[#111111]/70 text-sm leading-relaxed font-sans">{srv.desc}</p>
+                  <div className="mt-6 pt-5 border-t border-[#0C186C]/10">
+                    <a
+                      href="https://wa.me/c/2348130156361"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full py-2.5 px-4 text-center rounded-lg bg-[#0C186C]/5 text-[#0C186C] font-bold hover:bg-[#0C186C] hover:text-[#FDCE52] transition-all duration-300 inline-block text-sm shadow-sm"
+                    >
+                      View Requirements
+                    </a>
+                  </div>
                 </div>
               ))}
             </FadeInSection>
@@ -800,7 +868,7 @@ export default function Home() {
                 </div>
 
                 <a
-                  href="https://wa.me/2348130156361"
+                  href="https://wa.link/p7s0qx"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full py-3 px-4 text-center rounded-lg border-2 border-[#0C186C] text-[#0C186C] font-bold hover:bg-[#0C186C] hover:text-white transition-all duration-300 inline-block text-sm"
@@ -821,8 +889,8 @@ export default function Home() {
                 <div>
                   <h4 className="text-xl font-bold text-[#FDCE52] uppercase">LLC (1 Million Shares)</h4>
                   <div className="flex items-baseline gap-1 my-6 border-b border-white/10 pb-4">
-                    <span className="text-4xl font-extrabold text-[#FDCE52] tracking-tight">₦80,000</span>
-                    <span className="text-xs font-semibold text-white/60">/ flat fee</span>
+                    <span className="text-4xl font-extrabold text-[#FDCE52] tracking-tight">₦95,000</span>
+                    <span className="text-xs font-semibold text-white/60">/ flat fee (extra million share capital 35k)</span>
                   </div>
                   
                   <ul className="space-y-3.5 my-8">
@@ -850,7 +918,7 @@ export default function Home() {
                 </div>
 
                 <a
-                  href="https://wa.me/2348130156361"
+                  href="https://wa.link/p7s0qx"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full py-3 px-4 text-center rounded-lg bg-[#FDCE52] text-[#0C186C] font-extrabold hover:bg-white hover:text-[#0C186C] transition-all duration-300 inline-block text-sm shadow-md"
@@ -863,9 +931,11 @@ export default function Home() {
               <div className="bg-white rounded-2xl p-8 border border-[#0C186C]/10 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col justify-between">
                 <div>
                   <h4 className="text-xl font-bold text-[#0C186C] uppercase">Incorporated Trustee</h4>
-                  <div className="flex items-baseline gap-1 my-6 border-b border-[#0C186C]/5 pb-4">
-                    <span className="text-4xl font-extrabold text-[#0C186C] tracking-tight">₦140,000</span>
-                    <span className="text-xs font-semibold text-[#111111]/50">/ flat fee</span>
+                  <div className="flex flex-col gap-1 my-6 border-b border-[#0C186C]/5 pb-4">
+                    <div className="flex items-baseline gap-1">
+                      <span className="text-4xl font-extrabold text-[#0C186C] tracking-tight">₦135,000</span>
+                    </div>
+                    <span className="text-xs font-semibold text-[#111111]/60 mt-1">for 2 Trustees and 15k for every additional Trustee</span>
                   </div>
                   
                   <ul className="space-y-3.5 my-8">
@@ -883,17 +953,13 @@ export default function Home() {
                     </li>
                     <li className="flex items-start text-sm text-[#111111]/85">
                       <CheckCircleIcon />
-                      <span>Official Minutes of Meeting</span>
-                    </li>
-                    <li className="flex items-start text-sm text-[#111111]/85">
-                      <CheckCircleIcon />
                       <span>Mandatory Newspaper Publications</span>
                     </li>
                   </ul>
                 </div>
 
                 <a
-                  href="https://wa.me/2348130156361"
+                  href="https://wa.link/p7s0qx"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full py-3 px-4 text-center rounded-lg border-2 border-[#0C186C] text-[#0C186C] font-bold hover:bg-[#0C186C] hover:text-white transition-all duration-300 inline-block text-sm"
@@ -1177,13 +1243,12 @@ export default function Home() {
                 <h3 className="text-white text-lg font-bold">Speak to me directly</h3>
               </div>
               <a
-                href="https://wa.me/2348130156361"
+                href="https://wa.link/p7s0qx"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-3.5 px-4 flex flex-col items-center justify-center bg-[#FDCE52] hover:bg-white text-[#0C186C] rounded-lg transition-all duration-300 hover:scale-105"
+                className="w-full py-3.5 px-4 flex flex-col items-center justify-center bg-[#FDCE52] hover:bg-white text-[#0C186C] rounded-lg transition-all duration-300 hover:scale-105 text-center"
               >
-                <span className="font-bold text-sm uppercase">TALK TO THE CAC ORACLE</span>
-                <span className="text-[10px] font-semibold opacity-80 mt-0.5">Stuck in registration? Get expert help</span>
+                <span className="font-bold text-sm uppercase">PAID CONSULTATION WITH THE CAC ORACLE</span>
               </a>
             </div>
 
@@ -1225,7 +1290,7 @@ export default function Home() {
           <div className="flex justify-center items-center gap-6 mt-2">
             {/* WhatsApp */}
             <a
-              href="https://wa.me/2348130156361"
+              href="https://wa.link/p7s0qx"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:scale-110 active:scale-95 transition-all p-2 rounded-full bg-white/5 border border-white/10 shadow-xs hover:border-[#25D366]/40 hover:bg-[#25D366]/10"
