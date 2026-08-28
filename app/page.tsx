@@ -259,8 +259,72 @@ export default function Home() {
     },
   ];
 
+  // Red Alert Popup State
+  const [showPopup, setShowPopup] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(24 * 60 * 60);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowPopup(true);
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    if (!showPopup) return;
+    const interval = setInterval(() => {
+      setTimeLeft((prev) => (prev > 0 ? prev - 1 : 0));
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [showPopup]);
+
+  const formatTime = (seconds: number) => {
+    const h = Math.floor(seconds / 3600);
+    const m = Math.floor((seconds % 3600) / 60);
+    const s = seconds % 60;
+    return `${h.toString().padStart(2, '0')}h : ${m.toString().padStart(2, '0')}m : ${s.toString().padStart(2, '0')}s`;
+  };
+
   return (
     <div id="home" className="flex flex-col min-h-screen bg-white text-[#111111] font-sans selection:bg-[#FDCE52]/30">
+      
+      {/* RED ALERT POPUP */}
+      {showPopup && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
+          <div className="relative bg-[#0C186C] text-white w-full max-w-md rounded-3xl overflow-hidden shadow-2xl border-4 border-red-600 animate-[pulse_2s_ease-in-out_infinite] transition-all duration-300">
+            <button 
+              onClick={() => setShowPopup(false)}
+              className="absolute top-4 right-4 text-white/70 hover:text-white transition-colors"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <div className="p-8 text-center flex flex-col gap-4 mt-2">
+              <div className="text-red-500 mx-auto bg-red-500/10 p-3 rounded-full w-fit">
+                <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+              </div>
+              <h3 className="text-2xl font-black text-red-500 uppercase tracking-tight">🚨 Red Alert! 🚨</h3>
+              <p className="text-lg font-bold text-[#FDCE52]">
+                Why settle for a free class when you can MASTER everything?
+              </p>
+              <p className="text-white/90 text-sm">
+                Get <span className="font-extrabold text-white text-lg">50% OFF</span> the Complete Mentorship Class <span className="underline decoration-red-500 decoration-2">TODAY ONLY</span>! 
+              </p>
+              <div className="bg-red-600 text-white font-mono font-bold text-2xl py-3 rounded-xl mt-2 border border-red-400/50 shadow-inner">
+                {formatTime(timeLeft)}
+              </div>
+              <a
+                href="https://wa.link/4lhvag"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setShowPopup(false)}
+                className="mt-4 w-full py-4 text-center rounded-xl bg-[#FDCE52] hover:bg-white text-[#0C186C] font-extrabold text-lg transition-all duration-300 shadow-lg transform hover:scale-105"
+              >
+                CLAIM 50% DISCOUNT NOW
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
       
       {/* --- HEADER --- */}
       <header
@@ -291,9 +355,10 @@ export default function Home() {
               href="https://wa.me/2348130156361"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center bg-[#FDCE52] hover:bg-white text-[#0C186C] font-bold text-sm px-6 py-2.5 rounded-lg shadow-sm transition-all duration-300 hover:scale-105"
+              className="inline-flex flex-col items-center justify-center bg-[#FDCE52] hover:bg-white text-[#0C186C] px-6 py-1.5 rounded-lg shadow-sm transition-all duration-300 hover:scale-105"
             >
-              TALK TO THE CAC ORACLE
+              <span className="font-bold text-sm">TALK TO THE CAC ORACLE</span>
+              <span className="text-[10px] font-semibold opacity-80 -mt-0.5">Stuck in registration?</span>
             </a>
           </div>
 
@@ -425,9 +490,10 @@ export default function Home() {
                 href="https://wa.me/2348130156361"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center bg-[#FDCE52] hover:bg-white text-[#0C186C] font-bold text-lg px-8 py-4 rounded-lg shadow-lg transition-all duration-300 hover:scale-105 text-center"
+                className="inline-flex flex-col items-center justify-center bg-[#FDCE52] hover:bg-white text-[#0C186C] px-8 py-3 rounded-lg shadow-lg transition-all duration-300 hover:scale-105 text-center"
               >
-                TALK TO THE CAC ORACLE
+                <span className="font-bold text-lg">TALK TO THE CAC ORACLE</span>
+                <span className="text-xs font-semibold opacity-80 mt-0.5">Stuck in registration? Get expert help</span>
               </a>
               <a
                 href="#services"
@@ -438,22 +504,18 @@ export default function Home() {
             </div>
           </FadeInSection>
 
-          {/* Hero Right Column (Founder Portrait) */}
+          {/* Hero Right Column (Services Flyer) */}
           <FadeInSection className="lg:col-span-5 flex justify-center lg:justify-end">
             <div className="relative">
               {/* Offset gold frames background */}
               <div className="absolute -inset-2 rounded-2xl border-2 border-[#FDCE52]/30 transform translate-x-3 translate-y-3 pointer-events-none"></div>
               <div className="absolute -inset-2 rounded-2xl border border-[#FDCE52]/20 transform -translate-x-2 -translate-y-2 pointer-events-none"></div>
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-[#FDCE52] w-full max-w-[340px] aspect-[4/5] bg-[#0c186c]">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-[#FDCE52] w-full max-w-[450px] aspect-square bg-[#0c186c]">
                 <img
-                  src="/pascal.jpg"
-                  alt="Ejiaka Pascal Nnchdonna - The CAC Oracle"
-                  className="w-full h-full object-cover object-top scale-105 hover:scale-110 transition-transform duration-500"
+                  src="/register.jpg"
+                  alt="Our Services - The CAC Oracle"
+                  className="w-full h-full object-cover scale-100 hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-[#0C186C] via-[#0C186C]/85 to-transparent p-4 pt-10 text-center">
-                  <h3 className="text-[#FDCE52] font-bold text-lg">Ejiaka Pascal Nnchdonna</h3>
-                  <p className="text-white/80 text-xs mt-0.5 font-medium tracking-wide uppercase">Founder & Lead Consultant</p>
-                </div>
               </div>
             </div>
           </FadeInSection>
@@ -510,6 +572,80 @@ export default function Home() {
             </div>
           </FadeInSection>
 
+          {/* Mentorship waitlists */}
+          <div className="mb-24">
+            <FadeInSection className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 items-stretch max-w-5xl mx-auto">
+              
+              {/* Free Class Card */}
+              <div className="bg-[#f7f9fc] rounded-3xl overflow-hidden border border-[#0C186C]/10 shadow-sm flex flex-col justify-between hover:shadow-md transition-all duration-300">
+                <div>
+                  <div
+                    className="relative w-full overflow-hidden aspect-square"
+                    style={{ backgroundColor: "#0c186c" }}
+                  >
+                    <img
+                      src="/freeclassflier.png"
+                      alt="Free Business Registration Masterclass"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="p-8">
+                    <h3 className="text-2xl font-bold text-[#0C186C] mb-3 uppercase">Free Masterclass</h3>
+                    <p className="text-[#111111]/80 text-sm leading-relaxed font-sans">
+                      Learn the fundamentals of corporate registrations. A free, action-packed class designed to clarify the basics of CAC filings, NIN modifications, and SCUML registrations.
+                    </p>
+                  </div>
+                </div>
+                <div className="p-8 pt-0">
+                  <a
+                    href="https://chat.whatsapp.com/Im6xxVJJ6TfJvG4vaOdJPC?s=cl&p=a&ilr=0"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full py-3.5 px-4 text-center rounded-xl bg-[#0C186C] hover:bg-[#0C186C]/90 text-white font-bold text-sm transition-all duration-300 inline-block shadow-sm"
+                  >
+                    GET FREE ACCESS
+                  </a>
+                </div>
+              </div>
+
+              {/* Paid Mentorship Card */}
+              <div className="bg-[#f7f9fc] rounded-3xl overflow-hidden border-2 border-[#FDCE52] shadow-sm flex flex-col justify-between hover:shadow-md transition-all duration-300 relative">
+                <div className="absolute top-4 right-4 bg-[#FDCE52] text-[#0C186C] text-xs font-bold uppercase tracking-wider py-1 px-3.5 rounded-full z-10">
+                  RECOMMENDED
+                </div>
+                <div>
+                  <div
+                    className="relative w-full overflow-hidden aspect-square"
+                    style={{ backgroundColor: "#0c186c" }}
+                  >
+                    <img
+                      src="/paidclass.png"
+                      alt="Premium Mentorship Program"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="p-8">
+                    <h3 className="text-2xl font-bold text-[#0C186C] mb-3 uppercase">Premium CAC Mentorship</h3>
+                    <p className="text-[#111111]/80 text-sm leading-relaxed font-sans">
+                      Ready to scale your registration business? Join my exclusive paid waitlist for step-by-step mentorship, industry secrets, NIN processing training, and priority cohort access.
+                    </p>
+                  </div>
+                </div>
+                <div className="p-8 pt-0">
+                  <a
+                    href="https://chat.whatsapp.com/HLBJpd3hVZTGt40vB0KZve?s=cl&p=a&ilr=0"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full py-3.5 px-4 text-center rounded-xl bg-[#FDCE52] hover:bg-[#0C186C] hover:text-white text-[#0C186C] font-bold text-sm transition-all duration-300 inline-block shadow-md"
+                  >
+                    JOIN MENTORSHIP GROUP
+                  </a>
+                </div>
+              </div>
+
+            </FadeInSection>
+          </div>
+
           {/* Founder Biography */}
           <div className="bg-[#fcfcff] border border-[#0C186C]/10 rounded-3xl p-8 lg:p-14 shadow-xs relative overflow-hidden">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
@@ -524,7 +660,7 @@ export default function Home() {
                 </div>
                 <div className="text-center mt-4">
                   <span className="text-[#0C186C] font-bold text-lg block">Ejiaka Pascal Nnchdonna</span>
-                  <span className="text-[#111111]/50 text-xs font-semibold uppercase tracking-wider">Certified Business Consultant</span>
+                  <span className="text-[#111111]/50 text-xs font-semibold uppercase tracking-wider">Founder, The CAC Oracle Global Consult</span>
                 </div>
               </FadeInSection>
 
@@ -788,93 +924,23 @@ export default function Home() {
             </p>
           </FadeInSection>
 
-          {/* Mentorship waitlists */}
-          <div className="mb-20">
-            <FadeInSection className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 items-stretch max-w-5xl mx-auto">
-              
-              {/* Free Class Card */}
-              <div className="bg-[#f7f9fc] rounded-3xl overflow-hidden border border-[#0C186C]/10 shadow-sm flex flex-col justify-between hover:shadow-md transition-all duration-300">
-                <div>
-                  <div
-                    className="relative w-full overflow-hidden aspect-video"
-                    style={{ backgroundColor: "#0c186c" }}
-                  >
-                    <img
-                      src="/freeclassflier.png"
-                      alt="Free Business Registration Masterclass"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div className="p-8">
-                    <h3 className="text-2xl font-bold text-[#0C186C] mb-3 uppercase">Free Masterclass</h3>
-                    <p className="text-[#111111]/80 text-sm leading-relaxed font-sans">
-                      Learn the fundamentals of corporate registrations. A free, action-packed class designed to clarify the basics of CAC filings, NIN modifications, and SCUML registrations.
-                    </p>
-                  </div>
-                </div>
-                <div className="p-8 pt-0">
-                  <a
-                    href="https://wa.me/2348130156361"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full py-3.5 px-4 text-center rounded-xl bg-[#0C186C] hover:bg-[#0C186C]/90 text-white font-bold text-sm transition-all duration-300 inline-block shadow-sm"
-                  >
-                    GET FREE ACCESS
-                  </a>
-                </div>
-              </div>
 
-              {/* Paid Mentorship Card */}
-              <div className="bg-[#f7f9fc] rounded-3xl overflow-hidden border-2 border-[#FDCE52] shadow-sm flex flex-col justify-between hover:shadow-md transition-all duration-300 relative">
-                <div className="absolute top-4 right-4 bg-[#FDCE52] text-[#0C186C] text-xs font-bold uppercase tracking-wider py-1 px-3.5 rounded-full z-10">
-                  RECOMMENDED
-                </div>
-                <div>
-                  <div
-                    className="relative w-full overflow-hidden aspect-video"
-                    style={{ backgroundColor: "#0c186c" }}
-                  >
-                    <img
-                      src="/paidclass.png"
-                      alt="Premium Mentorship Program"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div className="p-8">
-                    <h3 className="text-2xl font-bold text-[#0C186C] mb-3 uppercase">Premium CAC Mentorship</h3>
-                    <p className="text-[#111111]/80 text-sm leading-relaxed font-sans">
-                      Ready to scale your registration business? Join my exclusive paid waitlist for step-by-step mentorship, industry secrets, NIN processing training, and priority cohort access.
-                    </p>
-                  </div>
-                </div>
-                <div className="p-8 pt-0">
-                  <a
-                    href="https://chat.whatsapp.com/HLBJpd3hVZTGt40vB0KZve?s=cl&p=a&ilr=0"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full py-3.5 px-4 text-center rounded-xl bg-[#FDCE52] hover:bg-[#0C186C] hover:text-white text-[#0C186C] font-bold text-sm transition-all duration-300 inline-block shadow-md"
-                  >
-                    JOIN MENTORSHIP GROUP
-                  </a>
-                </div>
-              </div>
-
-            </FadeInSection>
-          </div>
 
           {/* Credentials / Certification */}
           <div className="mb-24 pt-12 border-t border-[#0C186C]/10">
-            <div className="max-w-4xl mx-auto w-full flex flex-col items-center">
+            <div className="max-w-6xl mx-auto w-full flex flex-col items-center">
               
-              <FadeInSection className="text-center mb-8">
+              <FadeInSection className="text-center mb-10">
                 <h3 className="text-2xl md:text-3xl font-extrabold text-[#0C186C] uppercase tracking-wide">
-                  OUR PROFESSIONAL CERTIFICATION
+                  OUR PROFESSIONAL CERTIFICATIONS
                 </h3>
-                <p className="text-sm text-[#111111]/65 font-semibold mt-1">Institute of Certified Business Consultants Certificate</p>
+                <p className="text-sm text-[#111111]/65 font-semibold mt-1">Certified qualifications and professional credentials</p>
               </FadeInSection>
 
-              {/* Certificate Image Viewer with Link to PDF */}
-              <FadeInSection className="max-w-md w-full flex flex-col items-center">
+              {/* Certificate Image Viewers with Links to PDFs */}
+              <FadeInSection className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full px-4">
+                
+                {/* Cert 1 */}
                 <a
                   href="/cac.pdf"
                   target="_blank"
@@ -884,11 +950,9 @@ export default function Home() {
                 >
                   <img
                     src="/cac.png"
-                    alt="The CAC Oracle Global Consult Certification Document"
-                    className="w-full h-auto object-cover transition-opacity duration-300 group-hover:opacity-95"
+                    alt="Institute of Certified Business Consultants Certificate"
+                    className="w-full h-full aspect-[3/4] object-contain p-4 transition-opacity duration-300 group-hover:opacity-95"
                   />
-                  
-                  {/* Premium Hover Overlay Banner */}
                   <div
                     className="absolute inset-0 opacity-0 group-hover:opacity-100 flex flex-col justify-center items-center gap-2.5 transition-opacity duration-300 p-6 text-center"
                     style={{ backgroundColor: "rgba(12, 24, 108, 0.8)" }}
@@ -900,13 +964,78 @@ export default function Home() {
                       </svg>
                     </div>
                     <span className="text-white font-bold text-lg tracking-wide transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 ease-out delay-75">
-                      Click to View Full PDF
+                      Click to View PDF
                     </span>
                     <span className="text-white/80 text-sm font-medium leading-relaxed max-w-xs transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 ease-out delay-100">
-                      Certified by the Institute of Certified Business Consultants
+                      Institute of Certified Business Consultants
                     </span>
                   </div>
                 </a>
+
+                {/* Cert 2 */}
+                <a
+                  href="/NOTINCERTIFICATE.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative block w-full rounded-2xl overflow-hidden shadow-xl border-4 border-white hover:scale-[1.02] hover:-translate-y-1 transition-all duration-300 ease-out cursor-pointer bg-[#fcfcff]"
+                  title="Click to view full PDF certification"
+                >
+                  <img
+                    src="/notincertificate.png"
+                    alt="NOTIN Certificate"
+                    className="w-full h-full aspect-[3/4] object-contain p-4 transition-opacity duration-300 group-hover:opacity-95"
+                  />
+                  <div
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100 flex flex-col justify-center items-center gap-2.5 transition-opacity duration-300 p-6 text-center"
+                    style={{ backgroundColor: "rgba(12, 24, 108, 0.8)" }}
+                  >
+                    <div className="w-12 h-12 rounded-full bg-[#FDCE52] text-[#0C186C] flex items-center justify-center shadow-md transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 ease-out">
+                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                      </svg>
+                    </div>
+                    <span className="text-white font-bold text-lg tracking-wide transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 ease-out delay-75">
+                      Click to View PDF
+                    </span>
+                    <span className="text-white/80 text-sm font-medium leading-relaxed max-w-xs transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 ease-out delay-100">
+                      NOTIN Certification
+                    </span>
+                  </div>
+                </a>
+
+                {/* Cert 3 */}
+                <a
+                  href="/SCUMLCONCEPTS.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative block w-full rounded-2xl overflow-hidden shadow-xl border-4 border-white hover:scale-[1.02] hover:-translate-y-1 transition-all duration-300 ease-out cursor-pointer bg-[#fcfcff]"
+                  title="Click to view full PDF certification"
+                >
+                  <img
+                    src="/scumlconcepts.png"
+                    alt="SCUML Concepts Certification"
+                    className="w-full h-full aspect-[3/4] object-contain p-4 transition-opacity duration-300 group-hover:opacity-95"
+                  />
+                  <div
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100 flex flex-col justify-center items-center gap-2.5 transition-opacity duration-300 p-6 text-center"
+                    style={{ backgroundColor: "rgba(12, 24, 108, 0.8)" }}
+                  >
+                    <div className="w-12 h-12 rounded-full bg-[#FDCE52] text-[#0C186C] flex items-center justify-center shadow-md transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 ease-out">
+                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                      </svg>
+                    </div>
+                    <span className="text-white font-bold text-lg tracking-wide transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 ease-out delay-75">
+                      Click to View PDF
+                    </span>
+                    <span className="text-white/80 text-sm font-medium leading-relaxed max-w-xs transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 ease-out delay-100">
+                      SCUML Concepts Certification
+                    </span>
+                  </div>
+                </a>
+
               </FadeInSection>
             </div>
           </div>
@@ -1051,9 +1180,10 @@ export default function Home() {
                 href="https://wa.me/2348130156361"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-3.5 px-4 text-center bg-[#FDCE52] hover:bg-white text-[#0C186C] font-bold text-sm rounded-lg transition-all duration-300 hover:scale-105 uppercase"
+                className="w-full py-3.5 px-4 flex flex-col items-center justify-center bg-[#FDCE52] hover:bg-white text-[#0C186C] rounded-lg transition-all duration-300 hover:scale-105"
               >
-                TALK TO THE CAC ORACLE
+                <span className="font-bold text-sm uppercase">TALK TO THE CAC ORACLE</span>
+                <span className="text-[10px] font-semibold opacity-80 mt-0.5">Stuck in registration? Get expert help</span>
               </a>
             </div>
 
