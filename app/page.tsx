@@ -77,6 +77,7 @@ export default function Home() {
     {
       title: "CAC Pre-Incorporation",
       desc: "Register your Business Name, Private Limited Company (Ltd), or Incorporated Trustees (NGOs/Churches) from scratch with absolute legal compliance.",
+      link: "https://wa.me/c/2348130156361",
       icon: (
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
@@ -86,6 +87,7 @@ export default function Home() {
     {
       title: "CAC Post-Incorporation",
       desc: "Process modifications, management changes, object adjustments, and other corporate updates safely within official registries.",
+      link: "https://wa.me/c/2348130156361",
       icon: (
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 1121.21 8H17m-.001-4v4h-.001" />
@@ -95,6 +97,7 @@ export default function Home() {
     {
       title: "Annual Returns & Compliance",
       desc: "File mandatory annual reports to preserve active corporate status and bypass registry penalties or strike-offs.",
+      link: "https://wa.me/c/2348130156361",
       icon: (
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -104,6 +107,7 @@ export default function Home() {
     {
       title: "Business/Company Modifications",
       desc: "Implement share capital restructuring, corporate name updates, or general organizational changes with total accuracy.",
+      link: "https://wa.me/c/2348130156361",
       icon: (
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
@@ -113,6 +117,7 @@ export default function Home() {
     {
       title: "Business Registration Support",
       desc: "Get expert, custom advisory before you register, helping you pick the ideal structure and understand your compliance duties.",
+      link: "https://wa.me/c/2348130156361",
       icon: (
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -124,7 +129,8 @@ export default function Home() {
   const OTHER_SERVICES = [
     {
       title: "NIN Modifications",
-      desc: "Modify, correct, or update details of your National Identity Number (NIN) including name spelling, ordering, and phone details.",
+      desc: "Modify, correct, or update details of your National Identity Number (NIN) including wrong spelling of name, re-arrangement of name, and phone number update, change of date of birth.",
+      link: "https://wa.me/c/2348130156361",
       icon: (
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
@@ -132,8 +138,19 @@ export default function Home() {
       )
     },
     {
+      title: "NIN Enrolments",
+      desc: "Enrol with National identity management commission. Available for both children and Adult.",
+      link: "https://wa.me/c/2348130156361",
+      icon: (
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+        </svg>
+      )
+    },
+    {
       title: "SCUML Processing",
       desc: "Acquire mandatory Special Control Unit Against Money Laundering (SCUML) certificates required for compliance in corporate banking.",
+      link: "https://wa.me/c/2348130156361",
       icon: (
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -143,6 +160,7 @@ export default function Home() {
     {
       title: "International Passport Processing",
       desc: "Navigate Nigerian passport applications, renewals, and data alignment seamlessly with clear guide paths.",
+      link: "https://wa.me/c/2348130156361",
       icon: (
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 002 2h2a2.5 2.5 0 002.5-2.5V14a2 2 0 002-2V7a2 2 0 00-2-2H18a2 2 0 01-2-2V3.052M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -152,6 +170,7 @@ export default function Home() {
     {
       title: "Tax Promax Processing",
       desc: "Manage corporate tax registrations, TIN acquisition, and submit your filings correctly on the FIRS Taxpromax portal.",
+      link: "https://wa.me/c/2348130156361",
       icon: (
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
@@ -161,6 +180,7 @@ export default function Home() {
     {
       title: "Trademark Registration",
       desc: "Protect your brand assets, logo designs, business names, and slogans legally against commercial copycats.",
+      link: "https://wa.me/c/2348130156361",
       icon: (
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12a3 3 0 100-6 3 3 0 000 6zm6-3h2m0 0h2m-2 0v2m0-2V7m-6 13h10a2 2 0 002-2v-3a2 2 0 00-2-2H9a2 2 0 00-2 2v3a2 2 0 002 2z" />
@@ -168,8 +188,9 @@ export default function Home() {
       )
     },
     {
-      title: "Document Retrieval",
-      desc: "Retrieve official CAC documents like certificates, status reports, and certified true copies seamlessly.",
+      title: "Documents Retrieval",
+      desc: "Retrieve your CAC documents: Certificate, status report, Memart, Acknowledgement letters, etc.",
+      link: "https://wa.me/c/2348130156361",
       icon: (
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
@@ -179,6 +200,7 @@ export default function Home() {
     {
       title: "Newspaper Publication",
       desc: "Fulfill statutory requirements with prompt and legal newspaper publications for your corporate activities.",
+      link: "https://wa.me/c/2348130156361",
       icon: (
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
@@ -778,7 +800,7 @@ export default function Home() {
                   </div>
                   <div className="mt-6 pt-5 border-t border-[#0C186C]/10">
                     <a
-                      href="https://wa.me/c/2348130156361"
+                      href={srv.link}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="w-full py-2.5 px-4 text-center rounded-lg bg-[#0C186C]/5 text-[#0C186C] font-bold hover:bg-[#0C186C] hover:text-[#FDCE52] transition-all duration-300 inline-block text-sm shadow-sm"
@@ -810,7 +832,7 @@ export default function Home() {
                   </div>
                   <div className="mt-6 pt-5 border-t border-[#0C186C]/10">
                     <a
-                      href="https://wa.me/c/2348130156361"
+                      href={srv.link}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="w-full py-2.5 px-4 text-center rounded-lg bg-[#0C186C]/5 text-[#0C186C] font-bold hover:bg-[#0C186C] hover:text-[#FDCE52] transition-all duration-300 inline-block text-sm shadow-sm"
@@ -1243,12 +1265,12 @@ export default function Home() {
                 <h3 className="text-white text-lg font-bold">Speak to me directly</h3>
               </div>
               <a
-                href="https://wa.link/p7s0qx"
+                href="https://wa.link/tm9gux"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full py-3.5 px-4 flex flex-col items-center justify-center bg-[#FDCE52] hover:bg-white text-[#0C186C] rounded-lg transition-all duration-300 hover:scale-105 text-center"
               >
-                <span className="font-bold text-sm uppercase">PAID CONSULTATION WITH THE CAC ORACLE</span>
+                <span className="font-bold text-sm uppercase">PAID CONSULTATIONS FOR CAC AGENTS WHO IS HAVING ISSUES WITH ANY REGISTRATION OR POST INCORPORATION QUERIES</span>
               </a>
             </div>
 
